@@ -1,4 +1,4 @@
-﻿namespace API.Dtos.Category.Response
+﻿namespace Application.Dtos.Category.Response
 {
     public class CategoryResponseDto
     {

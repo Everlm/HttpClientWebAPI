@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Utilities.Static
+namespace Utilities.Static
 {
     public class ReplyMessage
     {

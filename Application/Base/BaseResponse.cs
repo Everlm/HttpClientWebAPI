@@ -1,4 +1,4 @@
-﻿namespace API.Base
+﻿namespace Application.Base
 {
     public class BaseResponse<T>
     {
