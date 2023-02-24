@@ -1,56 +1,65 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces;
+using Infrastructure.Interfaces;
+using Newtonsoft.Json;
 using System.Net.Http.Json;
-using System.Text.Json;
 
 namespace Infrastructure.Repositories
 {
-    public class CategoryRepository : IGenericRepository<Category>
+    public class CategoryRepository : ICategoryRepository
     {
 
-        private readonly IHttpClientFactory _httpClientFactory;
-        public CategoryRepository(IHttpClientFactory httpClientFactory)
+        private readonly HttpClient _httpClient;
+        private readonly string baseURL = "https://api.escuelajs.co/api/v1/categories/";
+        public CategoryRepository(HttpClient httpClient)
         {
-            _httpClientFactory = httpClientFactory;
+            _httpClient = httpClient;
         }
 
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
-            var client = _httpClientFactory.CreateClient("Client");
-            var response = await client.GetAsync("/api/v1/categories");
+            var response = await _httpClient.GetAsync(baseURL);
             response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<IEnumerable<Category>>(content);
 
-            return await response.Content.ReadFromJsonAsync<IEnumerable<Category>>();
+            return result!;
 
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    var content = await response.Content.ReadAsStringAsync();
-            //    var categories = JsonSerializer.Deserialize<IEnumerable<Category>>(content,
-            //        new JsonSerializerOptions() { PropertyNameCaseInsensitive=true});
-            //    return categories!;
-            //}
-
-            //return null;
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<Category> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync($"{baseURL}{id}");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Category>(content);
+
+            return result!;
         }
 
-        public Task<bool> EditAsync(Category entity)
+        public async Task<Category> RegisterAsync(Category category)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.PostAsJsonAsync("{baseURL}", category);
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Category>(content);
+
+            return result!;
+
         }
 
-        public Task<Category> GetByIdAsync(int id)
+        public async Task<Category> EditAsync(Category category, int id)
         {
-            throw new NotImplementedException();
-        }
+            var response = await _httpClient.PutAsJsonAsync($"{baseURL}{id}", category);
+            response.EnsureSuccessStatusCode();
+            var content =await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Category>(content);
 
-        public Task<bool> RegisterAsync(Category entity)
+            return result!;
+        }
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.DeleteAsync($"{baseURL}{id}");
+            response.EnsureSuccessStatusCode();
         }
     }
 }
