@@ -6,8 +6,8 @@ namespace Infrastructure.Interfaces
     {
         Task<IEnumerable<Category>> GetAllAsync();
         Task<Category> GetByIdAsync(int id);
-        Task<Category> RegisterAsync(Category category);
-        Task<Category> EditAsync(Category category, int id);
-        Task DeleteAsync(int Category);
+        Task<bool> RegisterAsync(Category category);
+        Task<bool> EditAsync(Category category, int id);
+        Task<bool> DeleteAsync(int Category);
     }
 }

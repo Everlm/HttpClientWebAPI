@@ -36,30 +36,35 @@ namespace Infrastructure.Repositories
             return result!;
         }
 
-        public async Task<Category> RegisterAsync(Category category)
+        public async Task<bool> RegisterAsync(Category category)
         {
             var response = await _httpClient.PostAsJsonAsync("{baseURL}", category);
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Category>(content);
+            var result = JsonConvert.DeserializeObject<bool>(content);
 
-            return result!;
+            return result;
 
         }
 
-        public async Task<Category> EditAsync(Category category, int id)
+        public async Task<bool> EditAsync(Category category, int id)
         {
             var response = await _httpClient.PutAsJsonAsync($"{baseURL}{id}", category);
             response.EnsureSuccessStatusCode();
-            var content =await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Category>(content);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<bool>(content);
 
-            return result!;
+            return result;
         }
-        public async Task DeleteAsync(int id)
+
+        public async Task<bool> DeleteAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"{baseURL}{id}");
             response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<bool>(content);
+
+            return result;
         }
     }
 }
