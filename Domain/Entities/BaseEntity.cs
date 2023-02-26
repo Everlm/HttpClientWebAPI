@@ -2,6 +2,8 @@
 {
     public abstract class BaseEntity
     {
-        public int Id { get; set; }
+        public int id { get; set; }
+        public DateTime creationAt { get; set; }
+        public DateTime updatedAt { get; set; }
     }
 }

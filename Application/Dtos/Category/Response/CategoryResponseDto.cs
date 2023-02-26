@@ -2,8 +2,10 @@
 {
     public class CategoryResponseDto
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? ImagePath { get; set; }
+        public int id { get; set; }
+        public string? name { get; set; }
+        public string? image { get; set; }
+        public DateTime creationAt { get; set; }
+        public DateTime updatedAt { get; set; }
     }
 }

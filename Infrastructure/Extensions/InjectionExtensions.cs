@@ -9,7 +9,8 @@ namespace Infrastructure.Extensions
     {
         public static IServiceCollection AddInjectionInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton(configuration);
+            //services.AddSingleton(configuration);
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddHttpClient<ICategoryRepository, CategoryRepository>();
 
             return services;

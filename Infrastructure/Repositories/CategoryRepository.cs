@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Infrastructure.Interfaces;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
@@ -22,7 +23,7 @@ namespace Infrastructure.Repositories
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<IEnumerable<Category>>(content);
 
-            return result!;
+            return result;
 
         }
 
