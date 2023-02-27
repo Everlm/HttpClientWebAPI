@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using Infrastructure.Interfaces;
 using Newtonsoft.Json;
 using System.Net.Http.Json;

@@ -28,12 +28,12 @@ namespace Application.ApplicationServices.Category
             {
                 response.IsSuccess = true;
                 response.Data = _mapper.Map<IEnumerable<CategoryResponseDto>>(categories);
-                response.Message = ReplyMessage.MESSAGE_QUERY;
+                response.Message = ReplyMessage.MESSAGE_REQUEST;
             }
             else
             {
                 response.IsSuccess = false;
-                response.Message = ReplyMessage.MESSAGE_QUERY_EMPTY;
+                response.Message = ReplyMessage.MESSAGE_REQUEST_EMPTY;
             }
 
             return response;

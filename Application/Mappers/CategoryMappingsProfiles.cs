@@ -2,7 +2,6 @@
 using Application.Dtos.Category.Response;
 using AutoMapper;
 using Domain.Entities;
-using Infrastructure.Commons.Bases;
 
 namespace Application.Mappers
 {
@@ -10,12 +9,15 @@ namespace Application.Mappers
     {
         public CategoryMappingsProfiles()
         {
-            CreateMap<CategoryRequestDto, Category>();
-            CreateMap<Category, CategoryRequestDto>()
-                .ReverseMap();
+            CreateMap<CategoryResponseDto, Category>();
 
-            CreateMap<BaseEntityResponse<Category>, BaseEntityResponse<CategoryResponseDto>>()
+            CreateMap<Category, CategoryResponseDto>()
                 .ReverseMap();
+             
+
+
+            //CreateMap<BaseEntityResponse<Category>, BaseEntityResponse<CategoryResponseDto>>()
+            //    .ReverseMap();
         }
     }
 }

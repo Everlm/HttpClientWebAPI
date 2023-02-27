@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Utilities.Static
+﻿namespace Utilities.Static
 {
     public class ReplyMessage
     {
-        public const string MESSAGE_QUERY = "Successful query";
-        public const string MESSAGE_QUERY_EMPTY = "No records found";
+        public const string MESSAGE_REQUEST = "Successful request";
+        public const string MESSAGE_REQUEST_EMPTY = "No records found";
         public const string MESSAGE_SAVE = "Successful Save";
         public const string MESSAGE_UPDATE = "Successful Update";
         public const string MESSAGE_DELETE = "Successful Delete";
