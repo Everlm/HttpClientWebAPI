@@ -38,33 +38,22 @@ namespace Infrastructure.Repositories
 
         public async Task<bool> RegisterAsync(Category category)
         {
-            var response = await _httpClient.PostAsJsonAsync("{baseURL}", category);
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<bool>(content);
-
-            return result;
-
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync(baseURL, category);          
+            return response.IsSuccessStatusCode;
+         
         }
 
         public async Task<bool> EditAsync(Category category, int id)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{baseURL}{id}", category);
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<bool>(content);
+            HttpResponseMessage response = await _httpClient.PutAsJsonAsync($"{baseURL}{id}", category);
+            return response.IsSuccessStatusCode;
 
-            return result;
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{baseURL}{id}");
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<bool>(content);
-
-            return result;
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"{baseURL}{id}");
+            return response.IsSuccessStatusCode;
         }
     }
 }

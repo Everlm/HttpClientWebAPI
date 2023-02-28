@@ -2,7 +2,7 @@
 {
     public class CategoryRequestDto
     {
-        public string? Name { get; set; }
-        public string? ImagePath { get; set; }
+        public string? name { get; set; }
+        public string? image { get; set; }
     }
 }

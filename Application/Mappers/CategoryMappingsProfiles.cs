@@ -5,7 +5,7 @@ using Domain.Entities;
 
 namespace Application.Mappers
 {
-    public class CategoryMappingsProfiles :Profile
+    public class CategoryMappingsProfiles : Profile
     {
         public CategoryMappingsProfiles()
         {
@@ -13,11 +13,8 @@ namespace Application.Mappers
 
             CreateMap<Category, CategoryResponseDto>()
                 .ReverseMap();
-             
 
-
-            //CreateMap<BaseEntityResponse<Category>, BaseEntityResponse<CategoryResponseDto>>()
-            //    .ReverseMap();
+            CreateMap<CategoryRequestDto, Category>();
         }
     }
 }

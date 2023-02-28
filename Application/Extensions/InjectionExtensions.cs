@@ -16,7 +16,6 @@ namespace Application.Extensions
 
             services.AddScoped<ICategoryApplication, CategoryApplication>();
           
-
             return services;
         }
     }
